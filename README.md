@@ -41,15 +41,40 @@ This is the first of several tab mental-model experiments.
   group, close one and a cold tab is promoted back out. Tabs you've grouped yourself are
   left untouched. Turn it off and the pile ungroups cleanly (tabs stay, just un-collapsed).
 
-## Load it (unpacked)
+## Install
 
-1. Go to `chrome://extensions`.
-2. Toggle **Developer mode** (top-right).
-3. **Load unpacked** → select this folder (`/Users/jalvarado/Code/pile`).
-4. Open a new tab. That's the pile.
+Pile isn't on the Chrome Web Store (yet), so it installs as an **unpacked
+extension** — about a minute of setup.
 
-Keyboard: **⌘⇧↓ / ⌘⇧↑** step activation down/up the pile (rebindable at
-`chrome://extensions/shortcuts`).
+**Option A — download a release (easiest)**
+
+1. Download the latest `pile-vX.Y.Z.zip` from the
+   [Releases page](https://github.com/jalvarado91/pile/releases) and unzip it.
+2. Open `chrome://extensions`.
+3. Turn on **Developer mode** (top-right).
+4. Click **Load unpacked** and pick the unzipped `pile` folder (the one containing
+   `manifest.json`).
+5. Open a new tab — that's the pile.
+
+**Option B — from source**
+
+```bash
+git clone https://github.com/jalvarado91/pile.git
+```
+
+Then follow steps 2–5 above, selecting the cloned folder.
+
+### Good to know
+
+- On launch Chrome may warn about "extensions running in developer mode" — that's
+  normal for any unpacked extension. Keep Pile enabled.
+- Pile requests **read your data on all sites**. It's used only to screenshot the
+  active tab for the grid view; nothing leaves your machine (thumbnails live in local
+  IndexedDB).
+- **Keyboard:** ⌘⇧↓ / ⌘⇧↑ step down/up the pile (rebind at
+  `chrome://extensions/shortcuts`).
+- **Updating:** replace the folder with a newer release and click the ↻ reload icon on
+  Pile's card in `chrome://extensions`.
 
 ## Architecture
 

@@ -1,0 +1,26 @@
+name: Release
+
+# Tag a version (e.g. `git tag v0.2.0 && git push --tags`) and this builds the
+# load-unpacked zip and attaches it to a GitHub Release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build zip
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          zip -r -X "pile-${VERSION}.zip" manifest.json src assets README.md -x "*.DS_Store"
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" pile-*.zip --generate-notes \
+            || gh release upload "$GITHUB_REF_NAME" pile-*.zip --clobber
