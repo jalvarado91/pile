@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pile</title>
+    <link rel="stylesheet" href="newtab.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <div class="brand">
+        <span class="dot"></span>
+        <h1>Pile</h1>
+        <button id="scope" class="scope" aria-haspopup="true" aria-expanded="false" hidden>
+          <span id="scope-label">This window</span>
+          <span class="caret">▾</span>
+        </button>
+        <span id="count" class="count"></span>
+        <div id="winmenu" class="winmenu" hidden></div>
+      </div>
+      <div class="tools">
+        <input id="search" type="search" placeholder="Filter the pile…" spellcheck="false" />
+        <div class="seg" role="tablist" aria-label="View">
+          <button id="view-grid" class="seg-btn is-on" role="tab">Grid</button>
+          <button id="view-list" class="seg-btn" role="tab">List</button>
+        </div>
+        <div class="setwrap">
+          <button id="settings" class="icon-btn" title="Settings" aria-haspopup="true" aria-expanded="false">⚙</button>
+          <div id="setmenu" class="setmenu" hidden>
+            <div class="set-row">
+              <span class="set-label">Keep warm <span class="set-sub">this window</span></span>
+              <div class="stepper">
+                <button class="step" data-step="-1" aria-label="Fewer">−</button>
+                <input id="keepwarm" type="number" min="1" max="60" step="1" />
+                <button class="step" data-step="1" aria-label="More">+</button>
+              </div>
+            </div>
+            <p class="set-hint">
+              Tabs past the most-recent <b id="kw-echo">10</b> in this window are
+              suspended to save memory. Pinned tabs are never suspended.
+            </p>
+            <div class="set-sep"></div>
+            <div class="set-row">
+              <span class="set-label">Declutter strip</span>
+              <label class="switch">
+                <input id="groupstrip" type="checkbox" />
+                <span class="track"></span>
+              </label>
+            </div>
+            <p class="set-hint">
+              Collapse suspended tabs into a <b>Pile</b> group in the tab bar, so the strip
+              shows just your warm tabs plus one chip.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="stage" class="stage grid" aria-live="polite"></main>
+
+    <template id="tpl-grid">
+      <button class="card" data-id="">
+        <div class="thumb"><img alt="" /><span class="fallback"></span></div>
+        <div class="meta">
+          <img class="favicon" alt="" />
+          <span class="title"></span>
+        </div>
+        <span class="badge"></span>
+        <div class="rowacts">
+          <span class="act pile" role="button" title="Send to pile">↓</span>
+          <span class="act close" role="button" title="Close tab">✕</span>
+        </div>
+      </button>
+    </template>
+
+    <template id="tpl-row">
+      <button class="row" data-id="">
+        <img class="favicon" alt="" />
+        <span class="title"></span>
+        <span class="url"></span>
+        <span class="badge"></span>
+        <span class="when"></span>
+        <span class="rowacts">
+          <span class="act pile" role="button" title="Send to pile">↓</span>
+          <span class="act close" role="button" title="Close tab">✕</span>
+        </span>
+      </button>
+    </template>
+
+    <script type="module" src="newtab.js"></script>
+  </body>
+</html>

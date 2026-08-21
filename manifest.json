@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Pile — tabs as a pile",
+  "version": "0.1.0",
+  "description": "A New Tab page that treats your open tabs as an LRU 'pile' — recent on top, older browsable, inactive tabs suspended to save memory.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "tabs",
+    "tabGroups",
+    "storage",
+    "favicon"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "chrome_url_overrides": {
+    "newtab": "src/newtab/newtab.html"
+  },
+  "commands": {
+    "pile-scroll-down": {
+      "suggested_key": { "default": "Ctrl+Shift+Down", "mac": "Command+Shift+Down" },
+      "description": "Pile: bring the next older tab to the top"
+    },
+    "pile-scroll-up": {
+      "suggested_key": { "default": "Ctrl+Shift+Up", "mac": "Command+Shift+Up" },
+      "description": "Pile: go back up the pile (more recent)"
+    }
+  }
+}
